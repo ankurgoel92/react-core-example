@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function CourseList(props) {
@@ -12,7 +13,7 @@ function CourseList(props) {
         </tr>
       </thead>
       <tbody>
-        {props.courses.map((course) => {
+        {props.courses.map(course => {
           return (
             <tr key={course.id}>
               <td>
@@ -27,5 +28,16 @@ function CourseList(props) {
     </table>
   );
 }
+
+CourseList.propTypes = {
+  courses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      authorId: PropTypes.number.isRequired,
+      category: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
 
 export default CourseList;
